@@ -6,11 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    {% include 'base/navbar.html' %}
-    <h1>{{posts_page_title}}</h1>
-    {% for post in posts %}
-    <h2>{{post.title}}</h2>
-    <p>{{post.content}}</p>
-    {% endfor %}
+    <h1>Barra de navegacion</h1>
+    <a href="/new_post">New post</a>
+    <a href="/">Volver</a>
 </body>
 </html>
