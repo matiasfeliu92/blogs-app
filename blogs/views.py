@@ -5,13 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .models import Post, Category
 from blogs.forms import PostsForm
 
-def index(request):
-    hello_text = 'Hello world'
-    # return render(request, 'index.html', {'text':hello_text})
-    return JsonResponse({'message': hello_text})
-
-def all_posts(request):
-    posts_data = list(Post.objects.raw("""
+all_posts_query = """
         SELECT 
             blogs_post.id, 
             blogs_post.title, 
@@ -21,8 +15,23 @@ def all_posts(request):
             blogs_post.image 
         FROM blogs_post 
         INNER JOIN blogs_category ON blogs_post.category_id = blogs_category.id
-    """))
+    """
+
+def index(request):
+    hello_text = 'Hello world'
+    # return render(request, 'index.html', {'text':hello_text})
+    return JsonResponse({'message': hello_text})
+
+def all_posts(request):
+    posts_data = list(Post.objects.raw(all_posts_query))
     return render(request, 'index.html', {'posts':posts_data})
+
+# def filter_posts(request, categ):
+#     print(categ)
+#     category = Category.objects.get(name=categ)
+#     filtered_posts = Post.objects.filter(category=category)
+#     print(filtered_posts)
+#     return render(request, 'filtered_posts.html', {'filtered_posts':filtered_posts})
 
 @csrf_exempt
 def new_post(request):
