@@ -24,11 +24,8 @@ class PostView(models.Model):
 
 def generate_post_view():
     with connection.cursor() as cursor:
-        # Check if the view already exists
-        cursor.execute("SELECT name FROM sqlite_master WHERE type='view' AND name='post_view';")
-        if cursor.fetchone() is not None:
-            # Drop the view if it already exists
-            cursor.execute("DROP VIEW post_view;")
+            
+        cursor.execute("DROP VIEW post_view;")
         
         # Create the view
         cursor.execute("""
