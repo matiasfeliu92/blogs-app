@@ -27,12 +27,3 @@ def new_post(request):
         post_form = PostsForm()
     
     return render(request, 'newPost.html', {'postForm': post_form})
-
-@csrf_exempt
-def new_category(request):
-    if request.method == 'POST':
-        cat_data = json.loads(request.body)
-        print(cat_data)
-        new_cat = Category(name=cat_data['name'])
-        new_cat.save()
-        return JsonResponse({'message': 'holaa'})
