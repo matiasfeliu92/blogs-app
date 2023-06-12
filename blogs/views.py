@@ -2,7 +2,7 @@ import json
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
-from .models import Post, Category
+from .models import Post, Category, PostView
 from blogs.forms import PostsForm
 
 def index(request):
@@ -11,10 +11,11 @@ def index(request):
     return JsonResponse({'message': hello_text})
 
 def all_posts(request):
-    posts_data = list(Post.objects.all().values())
-    posts_page_title = 'Te invito los posts mas destacados'
+    # posts_data = list(Post.objects.all().values())
+    posts_data = list(PostView.objects.all().values())
+    print(posts_data)
     # return JsonResponse(posts_data, safe=False)
-    return render(request, 'index.html', {'posts':posts_data, 'posts_page_title': posts_page_title})
+    return render(request, 'index.html', {'posts':posts_data})
 
 @csrf_exempt
 def new_post(request):
