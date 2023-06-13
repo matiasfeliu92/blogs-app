@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,11 +14,12 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container" style="background-color: aquamarine; display: flex; flex-direction: row; justify-content: space-around;">
-      <div style="width: 30%;">
+    <div class="container" style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; height: 7vh;">
+      <div style="width: 30%; align-items: center;">
         <a href="/new_post">New post</a>
       </div>
-      <div style="width: 50%; display: flex; flex-direction: row; justify-content: space-around;">
+      <div style="width: 50%; display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
+        <h5>search by category</h5>
         <input id="search" type="search"/>
       </div>
     </div>

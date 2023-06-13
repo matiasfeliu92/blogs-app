@@ -11,13 +11,13 @@
     />
     <title>Document</title>
 </head>
-<body>
+<body style="background-color: grey;">
     {% include 'base/heading.html' %}
     <!-- {% include 'base/navbar.html' %} -->
     <div class="container">
         <div class="row">
             <a href="/">Volver</a>
-            <form method="post">
+            <form style="width: 100%; height: auto; display: flex; flex-direction: column; align-items: center;" method="post">
                 {% csrf_token %}
                 {{ postForm.as_p }}
                 <button type="submit">Submit</button>
