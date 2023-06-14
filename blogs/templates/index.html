@@ -10,7 +10,6 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
-    <script defer src="../../static/js/main.js"></script>
     <title>Document</title>
   </head>
   <body style="background-color: gray;">
@@ -20,7 +19,7 @@
         {% for post in posts %}
         <div id="post" class="posts" style="width: 30%; height: auto; display: flex; flex-direction: column; text-align: center; margin-top: 10px; background-color: lightgray;">
           <h2>{{post.title}}</h2>
-          <h4 class="category">{{post.category_name}}</h4>
+          <h4 class="category">{{post.category}}</h4>
           <p>{{post.content}}</p>
           <img src={{post.image}} alt={{post.id}}>
         </div>
@@ -32,6 +31,5 @@
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"
     ></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </body>
 </html>
