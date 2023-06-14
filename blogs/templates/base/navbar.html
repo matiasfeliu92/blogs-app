@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,16 +10,19 @@
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
     />
-    <script defer src="../../static/js/main.js"></script>
     <title>Document</title>
 </head>
 <body>
-    <div class="container" style="background-color: aquamarine; display: flex; flex-direction: row; justify-content: space-around;">
-      <div style="width: 30%;">
-        <a href="/new_post">New post</a>
+    <div class="container" style="display: flex; flex-direction: row; justify-content: space-around; align-items: center; height: 7vh;">
+      <div style="width: 20%; align-items: center;">
+        <a style="color: black;" href="/new_post">New post</a>
       </div>
-      <div style="width: 50%; display: flex; flex-direction: row; justify-content: space-around;">
-        <input id="search" type="search"/>
+      <div style="width: 30%; display: flex; flex-direction: row; justify-content: space-around; align-items: center;">
+        <form method="POST">
+          {% csrf_token %}
+          <input class="search" type="text" name="findposts" placeholder="Search by category">
+          <input type="submit" value="Submit">
+        </form> 
       </div>
     </div>
     <script
@@ -26,6 +30,5 @@
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"
     ></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>
