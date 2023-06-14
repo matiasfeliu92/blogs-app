@@ -2,6 +2,7 @@ import json
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Q
 from .models import Post, Category
 from blogs.forms import PostsForm
 
@@ -23,15 +24,24 @@ def index(request):
     return JsonResponse({'message': hello_text})
 
 def all_posts(request):
-    posts_data = list(Post.objects.raw(all_posts_query))
-    return render(request, 'index.html', {'posts':posts_data})
+    posts = Post.objects.raw(all_posts_query)
+    return render(request, 'index.html', {'posts': posts})
 
-# def filter_posts(request, categ):
-#     print(categ)
-#     category = Category.objects.get(name=categ)
-#     filtered_posts = Post.objects.filter(category=category)
-#     print(filtered_posts)
-#     return render(request, 'filtered_posts.html', {'filtered_posts':filtered_posts})
+def filter_posts(request):
+    posts = Post.objects.raw(all_posts_query)
+    if request.method == "POST":
+        query = request.POST.get("findposts")
+        print(query)
+        posts_filtered = None
+        if query:
+            posts_filtered = Post.objects.filter(Q(category__name__icontains=query))
+            if posts_filtered:
+                return render(request, 'index.html', {'posts': posts_filtered})
+            else:
+                return render(request, 'index.html', {'notpost': 'not post found'})
+
+    return render(request, 'index.html', {'posts': posts})
+
 
 @csrf_exempt
 def new_post(request):
